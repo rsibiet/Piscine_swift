@@ -1,0 +1,16 @@
+class Deck : NSObject {
+    static let allSpades : [Card] = Value.allValues.map({Card(c: Color.Spade, v: $0)})
+    static let allDiamonds : [Card] = Value.allValues.map({Card(c: Color.Diamond, v: $0)})
+    static let allHearts : [Card] = Value.allValues.map({Card(c: Color.Heart, v: $0)})
+    static let allClubs : [Card] = Value.allValues.map({Card(c: Color.Club, v: $0)})
+    
+    static let allCards : [Card] = allSpades + allDiamonds + allHearts + allClubs
+}
+
+extension Array {
+    mutating func shuffle() {
+        for _ in 0..<((count>0) ? (count-1) : 0) {
+            sort { (_,_) in arc4random() < arc4random() }
+        }
+    }
+}
